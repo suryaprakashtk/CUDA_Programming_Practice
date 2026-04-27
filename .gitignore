@@ -67,3 +67,99 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+# executables / output binaries
+*.out
+a.out
+*.exe
+
+# build folders
+build/
+bin/
+cmake-build-*/
+
+# object files
+*.o
+*.obj
+
+# compiled binaries
+*.out
+*.o
+*.so
+*.a
+
+# CUDA artifacts
+*.cubin
+*.ptx
+*.fatbin
+out
+
+# =========================
+# 🧱 Build outputs
+# =========================
+build/
+cmake-build-*/
+bin/
+out
+*.out
+*.exe
+a.out
+
+# =========================
+# 🧠 C++ / CUDA artifacts
+# =========================
+*.o
+*.obj
+*.so
+*.a
+*.lib
+*.d
+
+# CUDA compiled artifacts
+*.cubin
+*.ptx
+*.fatbin
+*.i
+*.ii
+
+# =========================
+# 🧪 IDE / editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# 🧠 OS files
+# =========================
+.DS_Store
+
+# =========================
+# 📊 logs / profiling
+# =========================
+*.log
+ncu-reports/
+nsys-reports/
+
+# =========================
+# 📦 datasets (optional)
+# =========================
+data/*.bin
+data/*.dat
+
+# =========================
+# 🧪 Python bindings (if used in robotics stacks)
+# =========================
+__pycache__/
+*.pyc
+
+# =========================
+# Nsight Systems outputs
+# =========================
+*.nsys-rep
+*.qdrep
+*.sqlite
+*.sqlite3
+*.log
+nsys-reports/
+report*
