@@ -1,12 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <cmath>
 #include "kernels.cuh"
 
-
 int main(int argc, char** argv) {
-    // Uncomment this line to pritn device details
+    int NO_THREADS_PER_BLOCK = 256;
+    // Uncomment this line to print device details
     // print_device_details();
 
     // Ensure the user passes the data directory as an argument
@@ -29,12 +25,14 @@ int main(int argc, char** argv) {
     // Allocating host memory to hold GPU output
     int numElements = input0.size();
     std::vector<float> output_gpu(numElements, 0.0f);
+    std::vector<float> output_cpu(numElements, 0.0f);
 
     std::cout << "Loaded datasets " << data_dir << "/... "<< "of size: "<< numElements << "\n";
     
-    run_kernel(input0.data(), input1.data(), output_gpu.data(), numElements);
+    run_kernel(input0.data(), input1.data(), output_gpu.data(), numElements, NO_THREADS_PER_BLOCK);
+    run_cpu(input0.data(), input1.data(), output_cpu.data(), numElements);
 
-    verfiy_1d_results(output_expected, output_gpu, numElements);
+    verfiy_1d_results(output_gpu, output_expected, numElements);
     
     return 0;
 }

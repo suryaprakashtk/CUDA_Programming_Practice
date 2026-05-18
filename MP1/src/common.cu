@@ -1,8 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
-#include <cmath>
+
 #include "kernels.cuh"
 
 // Helper function to load 1D dataset
@@ -28,7 +24,6 @@ bool load_vector(const std::string& filepath, std::vector<float>& data) {
 // Used to verify 1d results
 bool verfiy_1d_results(std::vector<float>& expected, std::vector<float>& calculated, int numElements)
 {
-	std::cout << "Verifying results...\n";
 	bool success = true;
     float max_error = 0.0f;
 	// Floating point tolerance
@@ -48,12 +43,24 @@ bool verfiy_1d_results(std::vector<float>& expected, std::vector<float>& calcula
     }
 
 	if (success) {
-        std::cout << "SUCCESS! All values match expected output. (Max Error: " << max_error << ")\n";
+        std::cout << "SUCCESS!\n";
     } else {
-        std::cout << "FAILED! Output does not match expected dataset.\n";
+        std::cout << "FAILED! FAILED! FAILED! FAILED! FAILED! FAILED! FAILED!\n";
     }
 
 	return success;
+}
+
+void run_cpu(const float* input_1, const float* input_2, float* output, int numElements)
+{
+    auto start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < numElements; ++i) {
+        output[i] = input_1[i] + input_2[i];
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    std::cout << "CPU time: "<< std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()<< " ms\n";
+    
+    return;
 }
 
 // Printing GPU Device Parameters
